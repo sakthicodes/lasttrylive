@@ -7,6 +7,17 @@
 </head>
 <body>
     <h1>Live Camera Feed</h1>
-    <img src="{{ url_for('video_feed') }}" alt="Camera Feed">
+    <video id="video" autoplay></video>
+    <script>
+        const video = document.getElementById('video');
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                console.error('Error accessing webcam: ', err);
+            });
+    </script>
 </body>
 </html>

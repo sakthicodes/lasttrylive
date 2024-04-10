@@ -78,3 +78,4 @@ Werkzeug==3.0.2
 wsproto==1.2.0
 yarg==0.1.9
 zipp==3.18.1
+gunicorn==21.2.0

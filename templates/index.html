@@ -3,10 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Screen Video</title>
+    <title>Live Camera Feed</title>
 </head>
 <body>
-    <h1>Green Screen Video</h1>
-    <img id="green-screen-video" src="{{ url_for('video_feed') }}" alt="Green Screen Video" style="width: 100%;">
+    <h1>Live Camera Feed</h1>
+    <div>
+        <h2>Live Camera</h2>
+        <video id="video" autoplay></video>
+    </div>
+    <div>
+        <h2>Green Screen Video</h2>
+        <iframe src="{{ url_for('video_feed') }}" width="640" height="480" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                console.error('Error accessing webcam: ', err);
+            });
+    </script>
 </body>
 </html>
